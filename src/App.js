@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
 function App() {
+  const [name, getName] = useState("");
+  const [fullName, getFullName] = useState("");
+  const data = (event) => {
+    getName(event.target.value);
+  };
+
+  const takeIt = (event) => {
+    event.preventDefault();
+    getFullName(name);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main">
+      <div> Hii {fullName} </div>
+      <form onSubmit={takeIt}>
+        <input
+          type="text"
+          onChange={data}
+          placeholder="kaha likh ra hai, idhar likh .... "
+        />
+        <button type="submit"> Idhar daba </button>
+      </form>
     </div>
   );
 }
